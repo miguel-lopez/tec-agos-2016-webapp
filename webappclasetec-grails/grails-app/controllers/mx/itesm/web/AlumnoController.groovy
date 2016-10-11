@@ -10,7 +10,22 @@ class AlumnoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Alumno.list(params), model:[alumnoCount: Alumno.count()]
+        println  "query:"+params.query
+
+
+
+        if(params.query){
+            def str = """ afdsa
+            fasdfas
+            dfasfas
+            """
+            def listAlumno =  Alumno.findAllByMatriculaLike('%'+params.query+'%')
+
+            println "lista--->"+listAlumno +"tamaño"+listAlumno.size()
+            respond  listAlumno,  model:[alumnoCount: listAlumno.size()] 
+        }else{
+            respond Alumno.list(params), model:[alumnoCount: Alumno.count()]
+        }
     }
 
     def show(Alumno alumno) {

@@ -11,7 +11,5 @@ class Carrera {
     	nombre nullable: false, unique: false, blank:false
     }
 
-    String toString(){
-    	nombre
-    }
+    
 }
