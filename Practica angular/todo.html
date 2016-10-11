@@ -3,7 +3,7 @@
 <head>
     <title>TO DO List</title>
     <link href="bootstrap.css" rel="stylesheet" />
-    <script src="angular.js"></script>
+    <script src="angular.js"  ></script>
     <script>
         var model = {
             user: "Adam"
@@ -30,8 +30,19 @@
             }
         });
 
-        todoApp.controller("ToDoCtrl", function ($scope) {
-            $scope.todo = model;
+    
+        todoApp.controller("ToDoCtrl", function ($scope, $interval ,$log) {
+            $scope.todo = "";
+            $scope.contador = 0;
+
+            var incrementarContador = function(){
+                $scope.contador = $scope.contador +1;
+                $log.debug("hola"+$scope.contador);
+            }
+            $interval(incrementarContador,1000);
+
+
+
 
             $scope.incompleteCount = function () {
                 var count = 0;
@@ -60,13 +71,14 @@
                   ng-hide="incompleteCount() == 0">
                 {{incompleteCount()}}
             </span>
+           
         </h1>
     </div>
-  
+   {{contador}}
     <div class="panel">
         <div class="input-group">
             <input class="form-control" ng-model="actionText" />
-            <span class="input-group-btn">
+            <span class="input-group-btn">+
                 <button class="btn btn-default"
                         ng-click="addNewItem(actionText)">
                     Add
