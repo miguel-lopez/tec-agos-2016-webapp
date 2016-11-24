@@ -35,15 +35,7 @@
             $scope.todo = "";
             $scope.contador = 0;
 
-            var incrementarContador = function(){
-                $scope.contador = $scope.contador +1;
-                $log.debug("hola"+$scope.contador);
-            }
-            $interval(incrementarContador,1000);
-
-
-
-
+         
             $scope.incompleteCount = function () {
                 var count = 0;
                 angular.forEach($scope.todo.items, function (item) {
