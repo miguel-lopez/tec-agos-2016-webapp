@@ -17,8 +17,10 @@ public class CorsFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String origin = req.getHeader("Origin");
-
+        System.out.println("origin:"+origin);
+        System.out.println("Valor:"+req.getMethod());
         boolean options = "OPTIONS".equals(req.getMethod());
+        System.out.println("options:"+options);
         if (options) {
             if (origin == null) return;
             resp.addHeader("Access-Control-Allow-Headers", "origin, authorization, accept, content-type, x-requested-with");
@@ -26,7 +28,7 @@ public class CorsFilter extends OncePerRequestFilter {
             resp.addHeader("Access-Control-Max-Age", "3600");
         }
 
-        resp.addHeader("Access-Control-Allow-Origin", origin == null ? "*" : origin);
+        resp.addHeader("Access-Control-Allow-Origin",  "*" );
         resp.addHeader("Access-Control-Allow-Credentials", "true");
 
         if (!options) chain.doFilter(req, resp);

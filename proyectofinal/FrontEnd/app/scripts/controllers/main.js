@@ -51,7 +51,15 @@ angular.module('bancosFrontApp')
             $scope.addNewItem = function (cuenta) {
             	$log.debug("add"+cuenta.numeroCuenta +"|"+cuenta.nombreCuenta);
 
-    		    	$scope.cuentas = CuentaBancaria.list();      
+
+    		    	//$scope.cuentas = CuentaBancaria.listas(); 
+              $scope.cuentas = $http.get("http://localhost:8080/cuentas")
+                          .then(function(response) {
+                            $log.debug("json"+response.data.nombre)
+                              $scope.cuentas = response.data;
+
+                         
+                        });         
 
 			
             }

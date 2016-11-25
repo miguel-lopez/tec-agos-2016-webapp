@@ -3,6 +3,8 @@ package bancos
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.*
 import grails.converters.*
+import org.springframework.web.bind.annotation.CrossOrigin
+
 
 
 class CuentasBancariasController extends RestfulController {
@@ -17,7 +19,7 @@ class CuentasBancariasController extends RestfulController {
     	println "Estoy en cuentasBancarias"
     	def lista = CuentasBancarias.list()
     	println "lista"+lista
-    	respond lista as JSON
+    	render  lista as  JSON
     }
 
 }
